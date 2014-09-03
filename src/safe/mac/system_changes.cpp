@@ -31,7 +31,7 @@ namespace safe { namespace mac {
 
 bool
 full_disk_encryption_is_active_on_startup_disk() {
-    auto ret = system("fdesetup isactive");
+    auto ret = system("/usr/bin/fdesetup isactive");
     if (ret < 0) throw std::system_error(errno, std::generic_category());
     return !ret;
 }

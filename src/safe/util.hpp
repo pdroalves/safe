@@ -192,31 +192,6 @@ public:
   }
 };
 
-template<typename RangeType>
-class Enumerate {
-  typedef decltype(std::declval<RangeType>().begin()) BeginIterator;
-  typedef decltype(std::declval<RangeType>().end()) EndIterator;
-
-  BeginIterator _begin;
-  EndIterator _end;
-  
-public:
-  template<typename R>
-  explicit Enumerate(R && rt)
-    : _begin(std::forward<R>(rt).begin())
-    , _end(std::forward<R>(rt).end()) {}
-
-  EnumerateIterator<BeginIterator>
-  begin() const {
-    return EnumerateIterator<BeginIterator>(0, _begin);
-  }
-
-  EnumerateIterator<EndIterator>
-  end() const {
-    return EnumerateIterator<EndIterator>(_end - _begin, _end);
-  }
-};
-
 template<typename Iterator>
 class ReversedIterator {
   Iterator _iterator;

@@ -26,6 +26,9 @@
 
 namespace safe { namespace mac {
 
+bool
+full_disk_encryption_is_active_on_startup_disk();
+
 typedef std::function<void(const char *, const char *const [])> ShellRun;
 
 std::vector<std::string>

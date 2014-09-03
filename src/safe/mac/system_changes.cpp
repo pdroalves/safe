@@ -29,7 +29,6 @@
 
 namespace safe { namespace mac {
 
-static
 bool
 full_disk_encryption_is_active_on_startup_disk() {
     auto ret = system("fdesetup isactive");

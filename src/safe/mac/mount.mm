@@ -9,6 +9,7 @@
 #import <safe/mac/mount.hpp>
 
 #import <safe/mac/shared_file_list.hpp>
+#import <safe/mac/system_changes.hpp>
 
 #import <safe/mount_common.hpp>
 #import <safe/util.hpp>
@@ -615,36 +616,45 @@ mount_new_encfs_drive(const std::shared_ptr<encfs::FsIO> & native_fs,
     else {
         mount_point = preferred_mount_point_name;
     }
-    
-    // check if ramdisk is mounted
-    auto ramdisk_pair = ensure_ramdisk();
-    std::string ramdisk_root, ramdisk_dev;
-    std::tie(ramdisk_root, ramdisk_dev) = ramdisk_pair;
 
-    // keep open handle to file inside ramdisk to prevent it from being unmounted
-    auto ramdisk_mount_lock_file = ramdisk_root + "/.safe_mount_lock";
-    auto fd = open(ramdisk_mount_lock_file.c_str(), O_RDWR | O_CREAT, 0777);
-    if (fd < 0) throw std::system_error(errno, std::generic_category());
-    unlink(ramdisk_mount_lock_file.c_str());
-    auto ramdisk_handle = RAMDiskHandle(fd);
-    
-    // get dyld path
-    NSString *dyld_file = [NSBundle.mainBundle pathForResource:@"libmount_webdav_interpose" ofType:@"dylib"];
-    if (!dyld_file) throw std::runtime_error("dyld could not be found!");
-    
-    // finally run mount command
+    RAMDiskHandle ramdisk_handle;
+
     std::ostringstream os;
-    os << SAFE_RAMDISK_MOUNT_ROOT_ENV << "=\"" << escape_double_quotes(ramdisk_root) << "\" " <<
-    SAFE_RAMDISK_MOUNT_DEV_ENV << "=\"" << escape_double_quotes(ramdisk_dev) << "\" " <<
-    "DYLD_FORCE_FLAT_NAMESPACE=1 " <<
-    "DYLD_INSERT_LIBRARIES=\"" << escape_double_quotes([dyld_file fileSystemRepresentation]) << "\" " <<
-    "mount_webdav -S -v \"" << escape_double_quotes(mount_name) << "\" \"" <<
+    os << "mount_webdav -S -v \"" << escape_double_quotes(mount_name) << "\" \"" <<
     escape_double_quotes(webdav_mount_url(listen_port, mount_name)) << "\" \"" << mount_point << "\"";
     auto mount_command = os.str();
-    
+
+    // if the startup disk is not encrypted, then we need to use a ramdisk for
+    // the webdav cache
+    if (!full_disk_encryption_is_active_on_startup_disk()) {
+        // check if ramdisk is mounted
+        auto ramdisk_pair = ensure_ramdisk();
+        std::string ramdisk_root, ramdisk_dev;
+        std::tie(ramdisk_root, ramdisk_dev) = ramdisk_pair;
+
+        // keep open handle to file inside ramdisk to prevent it from being unmounted
+        auto ramdisk_mount_lock_file = ramdisk_root + "/.safe_mount_lock";
+        auto fd = open(ramdisk_mount_lock_file.c_str(), O_RDWR | O_CREAT, 0777);
+        if (fd < 0) throw std::system_error(errno, std::generic_category());
+        unlink(ramdisk_mount_lock_file.c_str());
+        ramdisk_handle = RAMDiskHandle(fd);
+
+        // get dyld path
+        NSString *dyld_file = [NSBundle.mainBundle pathForResource:@"libmount_webdav_interpose" ofType:@"dylib"];
+        if (!dyld_file) throw std::runtime_error("dyld could not be found!");
+
+        // finally run mount command
+        std::ostringstream os2;
+        os << SAFE_RAMDISK_MOUNT_ROOT_ENV << "=\"" << escape_double_quotes(ramdisk_root) << "\" " <<
+        SAFE_RAMDISK_MOUNT_DEV_ENV << "=\"" << escape_double_quotes(ramdisk_dev) << "\" " <<
+        "DYLD_FORCE_FLAT_NAMESPACE=1 " <<
+        "DYLD_INSERT_LIBRARIES=\"" << escape_double_quotes([dyld_file fileSystemRepresentation]) << "\" " << mount_command;
+        mount_command = os2.str();
+    }
+
     auto ret_system = system(mount_command.c_str());
     if (ret_system) throw std::runtime_error("running mount command failed");
-    
+
     // return new mount details with thread info
     return MountDetails(listen_port, std::move(mount_name),
                         thread, mount_point, event, encrypted_container_path,

@@ -45,8 +45,12 @@ if [ -z "$SAFE_PFX_PASSWORD" ]; then
     stty echo
 fi
 
-# Provoke gpg to ask for key password (for signing later)
-gpg --export-secret-subkeys > /dev/null
+if [ -z "$SAFE_GPG_PASSPHRASE" ]; then
+    stty -echo
+    printf 'GPG private key passphrase:'
+    read SAFE_GPG_PASSPHRASE
+    stty echo
+fi
 
 # Okay now that we have all the credentials let's build!
 
@@ -96,5 +100,6 @@ zip -r -9 Safe-$VERSION-Windows.zip Safe.exe
 
 # Now sign each package
 for I in *.zip; do
-    gpg --detach-sign "$I"
+    # force builtin echo for security
+    builtin echo "$SAFE_GPG_PASSPHRASE" | gpg --no-use-agent --passphrase-fd 0 --detach-sign "$I"
 done

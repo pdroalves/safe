@@ -31,6 +31,14 @@ EOF
     "$VERSION_TEMP_OUT"
 }
 
+# check if the right tools are installed before proceeding
+for TOOL in osslsigncode gpg i686-w64-mingw32-gcc zip make xcodebuild cc; do
+    if ! which "$TOOL" > /dev/null; then
+	echo "Please install $TOOL before running this script"
+	exit 127
+    fi
+done
+
 # Get credentials to complete build
 
 if [ -z "$SAFE_PFX_PATH" ]; then

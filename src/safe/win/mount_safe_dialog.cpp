@@ -19,6 +19,7 @@
 #include <safe/win/mount_safe_dialog.hpp>
 
 #include <safe/constants.h>
+#include <safe/language.hpp>
 #include <safe/win/dialog_common.hpp>
 #include <safe/mount_safe_dialog_logic.hpp>
 #include <safe/win/mount.hpp>
@@ -312,14 +313,14 @@ mount_existing_safe_dialog(HWND hwnd, std::shared_ptr<encfs::FsIO> fsio,
 
   auto dlg =
     DialogTemplate(DialogDesc(DEFAULT_MODAL_DIALOG_STYLE | WS_VISIBLE,
-                              "Mount Existing " ENCRYPTED_STORAGE_NAME_A,
+                              get_phrase("MOUNT_EXISTING") " " ENCRYPTED_STORAGE_NAME_A,
                               0, 0, DIALOG_WIDTH, DIALOG_HEIGHT),
                    {
-                     LText(("Mount Existing " ENCRYPTED_STORAGE_NAME_A),
+                     LText((get_phrase("MOUNT_EXISTING") " " ENCRYPTED_STORAGE_NAME_A),
                            IDC_STATIC,
                            HEADING_LEFT, HEADING_TOP,
                            HEADING_WIDTH, HEADING_HEIGHT),
-                     LText("Location:", IDC_STATIC,
+                     LText(get_phrase("LOCATION") ":", IDC_STATIC,
                            LOCATION_LABEL_LEFT, LOCATION_LABEL_TOP,
                            LOCATION_LABEL_WIDTH, LOCATION_LABEL_HEIGHT),
                      EditText(IDC_LOCATION,
@@ -327,10 +328,10 @@ mount_existing_safe_dialog(HWND hwnd, std::shared_ptr<encfs::FsIO> fsio,
                               LOCATION_ENTRY_WIDTH, LOCATION_ENTRY_HEIGHT,
                               ES_READONLY | ES_LEFT | ES_AUTOHSCROLL |
                               WS_BORDER),
-                     PushButton("Browse", IDC_BROWSE,
+                     PushButton(get_phrase("BROWSE"), IDC_BROWSE,
                                 BROWSE_BTN_LEFT, BROWSE_BTN_TOP,
                                 BROWSE_BTN_WIDTH, BROWSE_BTN_HEIGHT),
-                     LText("Password:", IDC_STATIC,
+                     LText(get_phrase("PASSWORD_UPPERCASE")":", IDC_STATIC,
                            PASS_LABEL_LEFT, PASS_LABEL_TOP,
                            PASS_LABEL_WIDTH, PASS_LABEL_HEIGHT),
                      EditText(IDC_PASSWORD,
@@ -338,14 +339,14 @@ mount_existing_safe_dialog(HWND hwnd, std::shared_ptr<encfs::FsIO> fsio,
                               PASS_ENTRY_WIDTH, PASS_ENTRY_HEIGHT,
                               ES_PASSWORD | ES_LEFT | ES_AUTOHSCROLL |
                               WS_BORDER | WS_TABSTOP),
-                     CheckBox("Show Password", IDC_SHOW_PASSWORD,
+                     CheckBox(get_phrase("SHOW_PASSWORD"), IDC_SHOW_PASSWORD,
                               SHOW_PASSWORD_LEFT, SHOW_PASSWORD_TOP,
                               SHOW_PASSWORD_WIDTH, SHOW_PASSWORD_HEIGHT,
 			      BS_AUTOCHECKBOX | WS_TABSTOP),
-                     DefPushButton("OK", IDOK,
+                     DefPushButton(get_phrase("OK"), IDOK,
                                    OK_BTN_LEFT, OK_BTN_TOP,
                                    OK_BTN_WIDTH, OK_BTN_HEIGHT),
-                     PushButton("Cancel", IDCANCEL,
+                     PushButton(get_phrase("CANCEL"), IDCANCEL,
                                 CANCEL_BTN_LEFT, CANCEL_BTN_TOP,
                                 CANCEL_BTN_WIDTH, CANCEL_BTN_HEIGHT),
                    }

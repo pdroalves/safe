@@ -21,6 +21,7 @@
 #include <safe/constants.h>
 #include <safe/win/dialog_common.hpp>
 #include <safe/logging.h>
+#include <safe/language.hpp>
 #include <safe/win/resources.h>
 #include <w32util/dialog.hpp>
 #include <w32util/gui_util.hpp>
@@ -29,6 +30,7 @@
 #include <cassert>
 
 #include <windows.h>
+
 
 namespace safe { namespace win {
 
@@ -183,13 +185,13 @@ about_dialog(HWND hwnd) {
   const unit_t VERSION_LEFT = 0;
   const unit_t VERSION_TOP = TAGLINE_TOP + TAGLINE_HEIGHT + 8;
 
-  const auto VISIT_TEXT = "Visit Website";
+  const auto VISIT_TEXT = get_phrase("VISIT_WEBSITE");
   const unit_t VISIT_WIDTH = button_width(VISIT_TEXT);
   const unit_t VISIT_HEIGHT = 12;
   const unit_t VISIT_LEFT = center_offset(DIALOG_WIDTH, VISIT_WIDTH);
   const unit_t VISIT_TOP = VERSION_TOP + VERSION_HEIGHT + 8;
 
-  const auto SOURCE_TEXT = "Get Source Code...";
+  const auto SOURCE_TEXT = get_phrase("GET_SOURCE_CODE");
   const unit_t SOURCE_WIDTH = button_width(SOURCE_TEXT);
   const unit_t SOURCE_HEIGHT = 12;
   const unit_t SOURCE_LEFT = center_offset(DIALOG_WIDTH, SOURCE_WIDTH);
@@ -204,7 +206,7 @@ about_dialog(HWND hwnd) {
 
   const auto dlg =
     DialogTemplate(DialogDesc(DEFAULT_MODAL_DIALOG_STYLE | WS_VISIBLE,
-                              "About Safe", 0, 0, DIALOG_WIDTH, DIALOG_HEIGHT,
+                              get_phrase("ABOUT") " Safe", 0, 0, DIALOG_WIDTH, DIALOG_HEIGHT,
                               FontDescription(desired_point, narrow(message_font.lfFaceName))),
                    {
                      CText(PRODUCT_NAME_A, IDC_LOGO_TEXT,

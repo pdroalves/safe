@@ -21,6 +21,7 @@
 
 #include <safe/product_name.h>
 #include <safe/version.h>
+#include "language.hpp"
 
 #define SAFE_APP_STARTED_COOKIE_FILENAME "AppStarted"
 #define SAFE_RECENTLY_USED_PATHS_DB_FILE_NAME "RecentPaths.db"
@@ -44,96 +45,86 @@ enum {
 
 #define SAFE_TRAY_ICON_TOOLTIP PRODUCT_NAME_A
 
-#define SAFE_PROGRESS_CREATING_TITLE ("Creating New " ENCRYPTED_STORAGE_NAME_A "...")
-#define SAFE_PROGRESS_CREATING_MESSAGE ("Creating new " ENCRYPTED_STORAGE_NAME_A "...")
+#define SAFE_PROGRESS_CREATING_TITLE (get_phrase("CREATING_NEW") " " ENCRYPTED_STORAGE_NAME_A "...")
+#define SAFE_PROGRESS_CREATING_MESSAGE (get_phrase("CREATING_NEW") " " ENCRYPTED_STORAGE_NAME_A "...")
 
-#define SAFE_PROGRESS_MOUNTING_TITLE ("Mounting New " ENCRYPTED_STORAGE_NAME_A "...")
-#define SAFE_PROGRESS_MOUNTING_MESSAGE ("Mounting new " ENCRYPTED_STORAGE_NAME_A "...")
+#define SAFE_PROGRESS_MOUNTING_TITLE (get_phrase("MOUNTING_NEW") " " ENCRYPTED_STORAGE_NAME_A "...")
+#define SAFE_PROGRESS_MOUNTING_MESSAGE (get_phrase("MOUNTING_NEW") " " ENCRYPTED_STORAGE_NAME_A "...")
 
-#define SAFE_PROGRESS_MOUNTING_EXISTING_TITLE ("Mounting Existing " ENCRYPTED_STORAGE_NAME_A "...")
-#define SAFE_PROGRESS_MOUNTING_EXISTING_MESSAGE ("Mounting existing " ENCRYPTED_STORAGE_NAME_A "...")
+#define SAFE_PROGRESS_MOUNTING_EXISTING_TITLE (get_phrase("MOUNTING_EXISTING") " " ENCRYPTED_STORAGE_NAME_A "...")
+#define SAFE_PROGRESS_MOUNTING_EXISTING_MESSAGE (get_phrase("MOUNTING_EXISTING") " " ENCRYPTED_STORAGE_NAME_A "...")
 
-#define SAFE_PROGRESS_VERIFYING_PASS_TITLE ("Verifying " ENCRYPTED_STORAGE_NAME_A " Password...")
-#define SAFE_PROGRESS_VERIFYING_PASS_MESSAGE ("Verifying " ENCRYPTED_STORAGE_NAME_A " password...")
+#define SAFE_PROGRESS_VERIFYING_PASS_TITLE (get_phrase("VERIFYING") " " ENCRYPTED_STORAGE_NAME_A " " get_phrase("PASSWORD_UPPERCASE"))
+#define SAFE_PROGRESS_VERIFYING_PASS_MESSAGE (get_phrase("VERIFYING") " " ENCRYPTED_STORAGE_NAME_A " " get_phrase("PASSWORD_LOWERCASE"))
 
-#define SAFE_PROGRESS_READING_CONFIG_TITLE ("Reading " ENCRYPTED_STORAGE_NAME_A " Configuration...")
-#define SAFE_PROGRESS_READING_CONFIG_MESSAGE ("Reading " ENCRYPTED_STORAGE_NAME_A " configuration...")
+#define SAFE_PROGRESS_READING_CONFIG_TITLE (get_phrase("READING") " " ENCRYPTED_STORAGE_NAME_A " " get_phrase("CONFIGURATION"))
+#define SAFE_PROGRESS_READING_CONFIG_MESSAGE (get_phrase("READING") " " ENCRYPTED_STORAGE_NAME_A " " get_phrase("CONFIGURATION"))
 
-#define SAFE_DIALOG_PASS_INCORRECT_TITLE "Password is Incorrect"
-#define SAFE_DIALOG_PASS_INCORRECT_MESSAGE "The password you have entered is incorrect."
+#define SAFE_DIALOG_PASS_INCORRECT_TITLE get_phrase("PASSWORD_IS_INCORRECT")
+#define SAFE_DIALOG_PASS_INCORRECT_MESSAGE get_phrase("THE_PASSWORD_YOU_HAVE_ENTERED_IS_INCORRECT")
 
-#define SAFE_DIALOG_NO_CONFIG_EXISTS_TITLE ("Not a " ENCRYPTED_STORAGE_NAME_A)
-#define SAFE_DIALOG_NO_CONFIG_EXISTS_MESSAGE ("The location you selected is not a " ENCRYPTED_STORAGE_NAME_A ".")
+#define SAFE_DIALOG_NO_CONFIG_EXISTS_TITLE (get_phrase("NOT_A")" " ENCRYPTED_STORAGE_NAME_A)
+#define SAFE_DIALOG_NO_CONFIG_EXISTS_MESSAGE (get_phrase("THE_LOCATION_YOU_SELECTED_IS_NOT_A")" " ENCRYPTED_STORAGE_NAME_A ".")
 
-#define SAFE_DIALOG_QUIT_CONFIRMATION_TITLE ("Quit " PRODUCT_NAME_A " Now?")
-#define SAFE_DIALOG_QUIT_CONFIRMATION_MESSAGE ("You currently have one or more " ENCRYPTED_STORAGE_NAME_A "s mounted, if you quit they will not be accessible until you run " PRODUCT_NAME_A " again. Quit " PRODUCT_NAME_A " Now?")
+#define SAFE_DIALOG_QUIT_CONFIRMATION_TITLE (get_phrase("QUIT") PRODUCT_NAME_A " " get_phrase("NOW_QUESTIONMARK"))
+#define SAFE_DIALOG_QUIT_CONFIRMATION_MESSAGE (get_phrase("YOU_CURRENTLY_HAVE_ONE_OR_MORE") " " ENCRYPTED_STORAGE_NAME_A get_phrase("S_MOUNTED",_IF_YOU_QUIT_THEY_WILL_NOT_BE_ACCESSIBLE_UNTIL_YOU_RUN) " " PRODUCT_NAME_A " " get_phrase("AGAIN") " " get_phrase("QUIT") PRODUCT_NAME_A " " get_phrase("NOW_QUESTIONMARK"))
 
-#define SAFE_DIALOG_UNKNOWN_CREATE_ERROR_TITLE "Unknown Error"
-#define SAFE_DIALOG_UNKNOWN_CREATE_ERROR_MESSAGE ("Unknown error occurred while creating new " ENCRYPTED_STORAGE_NAME_A ".")
+#define SAFE_DIALOG_UNKNOWN_CREATE_ERROR_TITLE get_phrase("UNKNOWN_ERROR")
+#define SAFE_DIALOG_UNKNOWN_CREATE_ERROR_MESSAGE (get_phrase("UNKNOWN_ERROR_OCCURRED_WHILE_CREATING_NEW") " " ENCRYPTED_STORAGE_NAME_A ".")
 
-#define SAFE_DIALOG_UNKNOWN_MOUNT_ERROR_TITLE "Unknown Error"
-#define SAFE_DIALOG_UNKNOWN_MOUNT_ERROR_MESSAGE ("Unknown error occurred while mounting existing " ENCRYPTED_STORAGE_NAME_A ".")
+#define SAFE_DIALOG_UNKNOWN_MOUNT_ERROR_TITLE get_phrase("UNKNOWN_ERROR")
+#define SAFE_DIALOG_UNKNOWN_MOUNT_ERROR_MESSAGE (get_phrase("UNKNOWN_ERROR_OCCURRED_WHILE_MOUNTING_EXISTING")" " ENCRYPTED_STORAGE_NAME_A ".")
 
-#define SAFE_DIALOG_ABOUT_TITLE ("About " PRODUCT_NAME_A)
-#define SAFE_DIALOG_WELCOME_TITLE ("Welcome to " PRODUCT_NAME_A "!")
+#define SAFE_DIALOG_ABOUT_TITLE (get_phrase("ABOUT") " " PRODUCT_NAME_A)
+#define SAFE_DIALOG_WELCOME_TITLE (get_phrase("WELCOME_TO") " " PRODUCT_NAME_A "!")
 
-#define SAFE_TRAY_ICON_WELCOME_TITLE (PRODUCT_NAME_A " is now Running!")
-#define SAFE_TRAY_ICON_WELCOME_MSG                                   \
-  (                                                                     \
-   "If you need to use "                                                \
-   PRODUCT_NAME_A                                                       \
-   ", just right-click on this icon."                                   \
-                                                      )
-#define SAFE_TRAY_ICON_MAC_WELCOME_MSG ("If you need to use " PRODUCT_NAME_A ", just click on the " PRODUCT_NAME_A " menu bar icon.")
+#define SAFE_TRAY_ICON_WELCOME_TITLE (PRODUCT_NAME_A " " get_phrase("IS_NOW_RUNNING"))
+
+#define SAFE_TRAY_ICON_MAC_WELCOME_MSG \
+  (get_phrase("SAFE_TRAY_ICON_MAC_WELCOME_MSG_A") \
+    PRODUCT_NAME_A get_phrase("SAFE_TRAY_ICON_MAC_WELCOME_MSG_B") \
+    PRODUCT_NAME_A get_phrase("SAFE_TRAY_ICON_MAC_WELCOME_MSG_C"))
 
 #define SAFE_DIALOG_WELCOME_TEXT \
-  (PRODUCT_NAME_A " is now running. You can use it by clicking "        \
-   "the " PRODUCT_NAME_A " icon in the tray. Get started by clicking "  \
-   "one of the actions below:")
+  (PRODUCT_NAME_A " " get_phrase("SAFE_DIALOG_WELCOME_TEXT_A")
+    PRODUCT_NAME_A " "get_phrase("SAFE_DIALOG_WELCOME_TEXT_B"))
+
 #define SAFE_DIALOG_WELCOME_TEXT_POST_DRIVER_INSTALL \
-  ("Congrats! Your system is now configured to use " PRODUCT_NAME_A ". " \
-   "Get started by clicking one of the actions below:")
+  (get_phrase("SAFE_DIALOG_WELCOME_TEXT_POST_DRIVER_INSTALL_A") PRODUCT_NAME_A ". " \
+   get_phrase("SAFE_DIALOG_WELCOME_TEXT_POST_DRIVER_INSTALL_B"))
 
 #define SAFE_DIALOG_WELCOME_CREATE_BUTTON \
-  ("Create New " ENCRYPTED_STORAGE_NAME_A "...")
+  (get_phrase("CREATE_NEW") ENCRYPTED_STORAGE_NAME_A "...")
 #define SAFE_DIALOG_WELCOME_MOUNT_BUTTON \
-  ("Mount Existing " ENCRYPTED_STORAGE_NAME_A "...")
+  (get_phrase("MOUNT_EXISTING") ENCRYPTED_STORAGE_NAME_A "...")
 
-#define SAFE_NOTIFICATION_TEST_TITLE "Short Title"
-#define SAFE_NOTIFICATION_TEST_MESSAGE \
-  ("Very long message full of meaningful info that you " \
-   "will find very interesting because you love to read " \
-   "tray icon bubbles. Don't you? Don't you?!?!")
+#define SAFE_NOTIFICATION_TEST_TITLE get_phrase("SAFE_NOTIFICATION_TEST_TITLE")
+#define SAFE_NOTIFICATION_TEST_MESSAGE get_phrase("SAFE_NOTIFICATION_TEST_MESSAGE")
 
-#define SAFE_DIALOG_ABOUT_TAGLINE "Protect your files."
-#define SAFE_DIALOG_ABOUT_VERSION "Version " SAFE_VERSION_STR
+#define SAFE_DIALOG_ABOUT_TAGLINE get_phrase("SAFE_DIALOG_ABOUT_TAGLINE")
+#define SAFE_DIALOG_ABOUT_VERSION get_phrase("SAFE_DIALOG_ABOUT_VERSION") " " SAFE_VERSION_STR
 
-#define SAFE_DIALOG_ABOUT_BYLINE (PRODUCT_NAME_A " is free software.")
+#define SAFE_DIALOG_ABOUT_BYLINE (PRODUCT_NAME_A " " get_phrase("SAFE_DIALOG_ABOUT_BYLINE"))
 
-#define SAFE_TRAY_ICON_SEND_FEEDBACK "Send Feedback..."
+#define SAFE_TRAY_ICON_SEND_FEEDBACK get_phrase("SAFE_TRAY_ICON_SEND_FEEDBACK")
 
-#define SAFE_DIALOG_REBOOT_CONFIRMATION_TITLE ("Reboot Now?")
-#define SAFE_DIALOG_REBOOT_CONFIRMATION_MESSAGE \
-  ("Your PC must be rebooted before it is secure enough to use " \
-   PRODUCT_NAME_A ". If you cancel you can reboot on your own later.")
-#define SAFE_DIALOG_REBOOT_CONFIRMATION_MESSAGE_MAC \
-  ("Your computer must be rebooted before it is secure enough to use " \
-   PRODUCT_NAME_A ". You can also quit " PRODUCT_NAME_A " and reboot on " \
-   "your own later. Reboot now?")
+#define SAFE_DIALOG_REBOOT_CONFIRMATION_TITLE get_phrase("SAFE_DIALOG_REBOOT_CONFIRMATION_TITLE")
+#define SAFE_DIALOG_REBOOT_CONFIRMATION_MESSAGE  (get_phrase("SAFE_DIALOG_REBOOT_CONFIRMATION_MESSAGE_A")   PRODUCT_NAME_A get_phrase("SAFE_DIALOG_REBOOT_CONFIRMATION_MESSAGE_B"))
+#define SAFE_DIALOG_REBOOT_CONFIRMATION_MESSAGE_MAC  \
+  (get_phrase("SAFE_DIALOG_REBOOT_CONFIRMATION_MESSAGE_MAC_A")" " \
+  PRODUCT_NAME_A get_phrase("SAFE_DIALOG_REBOOT_CONFIRMATION_MESSAGE_MAC_B") PRODUCT_NAME_A\
+  " " get_phrase("SAFE_DIALOG_REBOOT_CONFIRMATION_MESSAGE_MAC_C"))
 
-#define SAFE_DIALOG_SYSTEM_CHANGES_TITLE "System Changes Required"
-#define SAFE_DIALOG_SYSTEM_CHANGES_HEADER \
-  "Before using Safe, we recommend making the following changes to your system:"
+
+#define SAFE_DIALOG_SYSTEM_CHANGES_TITLE get_phrase("SAFE_DIALOG_SYSTEM_CHANGES_TITLE") 
+#define SAFE_DIALOG_SYSTEM_CHANGES_HEADER get_phrase("SAFE_DIALOG_SYSTEM_CHANGES_HEADER")  
 #define SAFE_DIALOG_SYSTEM_CHANGES_BULLET "•"
-#define SAFE_DIALOG_SYSTEM_CHANGES_FOOTER \
-  "These changes are critical for ensuring your privacy when using Safe but "\
-  "may not be necessary for your use case. If in doubt, we strongly recommend "\
-  "making these changes."
-#define SAFE_DIALOG_SYSTEM_CHANGES_MAKE_CHANGES "Make Changes"
-#define SAFE_DIALOG_SYSTEM_CHANGES_DONT_MAKE_CHANGES "Don't Make Changes"
-#define SAFE_DIALOG_SYSTEM_CHANGES_MORE_INFO "More Info"
+#define SAFE_DIALOG_SYSTEM_CHANGES_FOOTER get_phrase("SAFE_DIALOG_SYSTEM_CHANGES_FOOTER")  
+#define SAFE_DIALOG_SYSTEM_CHANGES_MAKE_CHANGES get_phrase("SAFE_DIALOG_SYSTEM_CHANGES_MAKE_CHANGES") 
+#define SAFE_DIALOG_SYSTEM_CHANGES_DONT_MAKE_CHANGES get_phrase("SAFE_DIALOG_SYSTEM_CHANGES_DONT_MAKE_CHANGES") 
+#define SAFE_DIALOG_SYSTEM_CHANGES_MORE_INFO get_phrase("SAFE_DIALOG_SYSTEM_CHANGES_MORE_INFO") 
 
-#define SAFE_PROGRESS_SYSTEM_CHANGES_TITLE "Making System Changes"
-#define SAFE_PROGRESS_SYSTEM_CHANGES_MESSAGE "Making System Changes..."
+#define SAFE_PROGRESS_SYSTEM_CHANGES_TITLE get_phrase("SAFE_PROGRESS_SYSTEM_CHANGES_TITLE") 
+#define SAFE_PROGRESS_SYSTEM_CHANGES_MESSAGE get_phrase("SAFE_PROGRESS_SYSTEM_CHANGES_MESSAGE") 
 
 #endif

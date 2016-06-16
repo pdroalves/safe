@@ -316,16 +316,14 @@ handle_multiple_mounts(HWND safe_main_window,
   auto mount_name = wd.mounts.front().get_mount_name();
 
   std::string message = 
-    ("We are unable to mount more than a single "
-     "Safe at a time on Windows XP. Would you like to unmount \"") +
-    mount_name +
-    ("\" first?");
+    (get_phrase("WE_ARE_UNABLE_TO_MOUNT_MORE_THAN_A_SINGLE_SAFE_WINDOWS_XP_A") " \"") +
+    mount_name + ("\" " get_phrase("FIRST"));
 
   auto ret = w32util::check_call(0, MessageBoxW, safe_main_window,
                                  w32util::widen(message).c_str(),
                                  (creating
-                                  ? L"Cannot Create New Safe"
-                                  : L"Cannot Mount Existing Safe"),
+                                  ? L get_phrase("CANNOT_CREATE_NEW_SAFE")
+                                  : L get_phrase("CANNOT_MOUNT_EXISTING_SAFE"),
                                  MB_YESNO | MB_ICONEXCLAMATION | MB_SETFOREGROUND);
   if (ret != IDYES) return false;
 
@@ -912,15 +910,15 @@ required_system_changes() {
   std::vector<std::string> to_ret;
 
   if (safe::win::need_to_install_kernel_driver()) {
-    to_ret.push_back("Install WebDAV RAMDisk cache");
+    to_ret.push_back(get_phrase("INSTALL WEBDAV RAMDISK CACHE)"));
   }
 
   if (hibernate_is_enabled()) {
-    to_ret.push_back("Disable hibernate sleep");
+    to_ret.push_back(get_phrase("DISABLE HIBERNATE SLEEP"));
   }
 
   if (!encrypted_pagefile_is_enabled()) {
-    to_ret.push_back("Enable pagefile encryption");
+    to_ret.push_back(get_phrase("ENABLE PAGEFILE ENCRYPTION"));
   }
 
   return to_ret;
@@ -1098,17 +1096,8 @@ static
 std::pair<bool, bool>
 run_winxp_warning_dialog(HWND hwnd) {
   std::string message =
-    ("The security of " PRODUCT_NAME_A " is degraded while "
-     "running under Windows XP. This is not a strictly a limitation of "
-     PRODUCT_NAME_A " and most security products on Windows XP "
-     "suffer from the same weakness."
-     "\n\n"
-     "If you expect that the only "
-     "people who will ever have access to your internal hard "
-     "disk are trusted, "
-     "then this is not an issue. Otherwise we don't recommend "
-     "running " PRODUCT_NAME_A " in this environment unless you "
-     "know exactly what you're doing."
+    (get_phrase("RUN_WINXP_WARNING_DIALOG_A") " " PRODUCT_NAME_A " " get_phrase("RUN_WINXP_WARNING_DIALOG_B")
+     " " PRODUCT_NAME_A " " get_phrase("RUN_WINXP_WARNING_DIALOG_C") " " PRODUCT_NAME_A " " get_phrase("RUN_WINXP_WARNING_DIALOG_A")
      );
 
   enum class XPWarningChoice {
@@ -1123,9 +1112,9 @@ run_winxp_warning_dialog(HWND hwnd) {
   };
 
   std::vector<safe::win::Choice<XPWarningChoice>> choices = {
-    {"Continue", XPWarningChoice::CONTINUE},
-    {"More Info", more_info},
-    {"Quit", XPWarningChoice::QUIT},
+    {get_phrase("CONTINUE"), XPWarningChoice::CONTINUE},
+    {get_phrase("MORE_INFO"), more_info},
+    {get_phrase("QUIT"), XPWarningChoice::QUIT},
   };
 
   auto ret =

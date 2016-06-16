@@ -25,6 +25,8 @@
 #include <cassert>
 #include <cstdint>
 
+#include "language.hpp"
+
 namespace safe {
 
 enum class TrayMenuAction : uint16_t {
@@ -104,11 +106,11 @@ populate_tray_menu(Menu & menu,
   std::string mount_verb_string;
   TrayMenuAction mount_action_id;
   if (show_unmount) {
-    mount_verb_string = "Unmount";
+    mount_verb_string = get_phrase("UNMOUNT");
     mount_action_id = TrayMenuAction::UNMOUNT;
   }
   else {
-    mount_verb_string = "Open";
+    mount_verb_string =get_phrase( "OPEN");
     mount_action_id = TrayMenuAction::OPEN;
   }
 
@@ -124,7 +126,7 @@ populate_tray_menu(Menu & menu,
 
   // create "Mount Recent" submenu
   if (true) {
-    auto sub_menu = menu.append_menu("Mount Recent");
+    auto sub_menu = menu.append_menu(get_phrase("MOUNT_RECENT"));
 
     tray_menu_action_arg_t sub_tag = 0;
     for (const auto & p : recent_mounts) {
@@ -147,24 +149,24 @@ populate_tray_menu(Menu & menu,
 
     if (sub_tag) sub_menu.append_separator();
 
-    auto item = sub_menu.append_item("Clear Menu", TrayMenuAction::CLEAR_RECENTS);
+    auto item = sub_menu.append_item(get_phrase("CLEAR_MENU"), TrayMenuAction::CLEAR_RECENTS);
     if (!sub_tag) item.disable();
   }
 
   // Mount an Existing Bitvault
-  menu.append_item("Mount Existing...", TrayMenuAction::MOUNT);
+  menu.append_item(get_phrase("MOUNT_EXISTING"), TrayMenuAction::MOUNT);
 
   // Create a New Bitvault
-  menu.append_item("Create New...", TrayMenuAction::CREATE);
+  menu.append_item(get_phrase("CREATE_NEW"), TrayMenuAction::CREATE);
 
   menu.append_separator();
 
   // About Bitvault
-  menu.append_item("About " PRODUCT_NAME_A, TrayMenuAction::ABOUT_APP);
+  menu.append_item(get_phrase("ABOUT") PRODUCT_NAME_A, TrayMenuAction::ABOUT_APP);
 
   menu.append_item(SAFE_TRAY_ICON_SEND_FEEDBACK, TrayMenuAction::SEND_FEEDBACK);
 
-  menu.append_item("Run " PRODUCT_NAME_A " at Login",
+  menu.append_item(get_phrase("RUN") " " PRODUCT_NAME_A " " get_phrase("AT_LOGIN"),
                      TrayMenuAction::TOGGLE_RUN_AT_LOGIN)
     .set_checked(startup_enabled);
 
@@ -172,16 +174,16 @@ populate_tray_menu(Menu & menu,
   menu.append_separator();
 
   // Test Bubble
-  menu.append_item("Test Bubble", TrayMenuAction::TEST_BUBBLE);
+  menu.append_item(get_phrase("TEST_BUBBLE"), TrayMenuAction::TEST_BUBBLE);
 
-  menu.append_item("Trigger Breakpoint", TrayMenuAction::TRIGGER_BREAKPOINT);
+  menu.append_item(get_phrase("TRIGGER_BREAKPOINT"), TrayMenuAction::TRIGGER_BREAKPOINT);
 
-  menu.append_item("Throw Exception", TrayMenuAction::THROW_EXCEPTION);
+  menu.append_item(get_phrase("THROW_EXCEPTION"), TrayMenuAction::THROW_EXCEPTION);
 #endif
 
   menu.append_separator();
 
-  menu.append_item("Quit " PRODUCT_NAME_A, TrayMenuAction::QUIT_APP);
+  menu.append_item(get_phrase("QUIT") " " PRODUCT_NAME_A, TrayMenuAction::QUIT_APP);
 }
 
 }

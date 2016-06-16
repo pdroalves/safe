@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+
+<Safe value="en-us">
+	<Phrases >
+		<MOUNT>Mount</MOUNT>
+		<UMOUNT>Unmount</UMOUNT>
+		<OPEN>Open</OPEN>
+		<MOUNT_RECENT>Mount Recent</MOUNT_RECENT>
+		<CLEAR_MENU>Clear Menu</CLEAR_MENU>
+		<MOUNT_EXISTING>Mount Existing...</MOUNT_EXISTING>
+		<CREATE_NEW>Create New...</CREATE_NEW>
+		<ABOUT>About </ABOUT>
+		<RUN>Run </RUN>
+		<AT_LOGIN>at Login</AT_LOGIN>
+		<TEST_BUBBLE>Test Bubble</TEST_BUBBLE>
+		<TRIGGER_BREAKPOINT>Trigger Breakpoint</TRIGGER_BREAKPOINT>
+		<THROW_EXCEPTION>Throw Exception</THROW_EXCEPTION>
+		<QUIT>Quit</QUIT>
+		<CREATING_NEW>Creating New</CREATING_NEW>
+		<CREATING_NEW>Creating new</CREATING_NEW>
+
+		<MOUNTING_NEW>Mounting New</MOUNTING_NEW>
+		<MOUNTING_NEW>Mounting new</MOUNTING_NEW>
+
+		<MOUNTING_EXISTING>Mounting Existing</MOUNTING_EXISTING>
+		<MOUNTING_EXISTING>Mounting existing</MOUNTING_EXISTING>
+
+		<VERIFYING>Verifying</VERIFYING>
+		<PASSWORD_UPPERCASE>Password</PASSWORD_UPPERCASE>
+		<PASSWORD_LOWERCASE>password</PASSWORD_LOWERCASE>
+
+		<READING>Reading</READING>
+		<CONFIGURATION>Configuration</CONFIGURATION>
+
+		<PASSWORD_IS_INCORRECT>Password is Incorrect</PASSWORD_IS_INCORRECT>
+		<THE_PASSWORD_YOU_HAVE_ENTERED_IS_INCORRECT>The password you have entered is incorrect.</THE_PASSWORD_YOU_HAVE_ENTERED_IS_INCORRECT>
+
+		<NOT_A>Not a</NOT_A>
+		<THE_LOCATION_YOU_SELECTED_IS_NOT_A>The location you selected is not a</THE_LOCATION_YOU_SELECTED_IS_NOT_A>
+
+		<YOU_CURRENTLY_HAVE_ONE_OR_MORE>You currently have one or more</YOU_CURRENTLY_HAVE_ONE_OR_MORE>
+		<S_MOUNTED_IF_YOU_QUIT_THEY_WILL_NOT_BE_ACCESSIBLE_UNTIL_YOU_RUN>s mounted, if you quit they will not be accessible until you run</S_MOUNTED_IF_YOU_QUIT_THEY_WILL_NOT_BE_ACCESSIBLE_UNTIL_YOU_RUN>
+		<AGAIN>again.</AGAIN>
+		<NOW_QUESTIONMARK>Now?</NOW_QUESTIONMARK>
+
+		<UNKNOWN_ERROR>Unknown Error</UNKNOWN_ERROR>
+		<UNKNOWN_ERROR_OCCURRED_WHILE_CREATING_NEW>Unknown error occurred while creating new</UNKNOWN_ERROR_OCCURRED_WHILE_CREATING_NEW>
+		<UNKNOWN_ERROR_OCCURRED_WHILE_MOUNTING_EXISTING>Unknown error occurred while mounting existing</UNKNOWN_ERROR_OCCURRED_WHILE_MOUNTING_EXISTING>
+
+		<WELCOME_TO>Welcome to</WELCOME_TO>
+
+		<IS_NOW_RUNNING>is now Running!</IS_NOW_RUNNING>
+
+		<SAFE_TRAY_ICON_MAC_WELCOME_MSG_A>If you need to use</SAFE_TRAY_ICON_MAC_WELCOME_MSG_A>
+		<SAFE_TRAY_ICON_MAC_WELCOME_MSG_B>, just click on the</SAFE_TRAY_ICON_MAC_WELCOME_MSG_B>
+		<SAFE_TRAY_ICON_MAC_WELCOME_MSG_C>menu bar icon.</SAFE_TRAY_ICON_MAC_WELCOME_MSG_C>
+
+		<SAFE_DIALOG_WELCOME_TEXT_A>is now running. You can use it by clicking the</SAFE_DIALOG_WELCOME_TEXT_A>
+		<SAFE_DIALOG_WELCOME_TEXT_B>icon in the tray. Get started by clicking one of the actions below:</SAFE_DIALOG_WELCOME_TEXT_B>
+		<SAFE_DIALOG_WELCOME_TEXT_POST_DRIVER_INSTALL_A>Congrats! Your system is now configured to use</SAFE_DIALOG_WELCOME_TEXT_POST_DRIVER_INSTALL_A>
+		<SAFE_DIALOG_WELCOME_TEXT_POST_DRIVER_INSTALL_B>Get started by clicking one of the actions below:</SAFE_DIALOG_WELCOME_TEXT_POST_DRIVER_INSTALL_B>
+
+		<SAFE_NOTIFICATION_TEST_TITLE>Short Title</SAFE_NOTIFICATION_TEST_TITLE>
+		<SAFE_NOTIFICATION_TEST_MESSAGE>Very long message full of meaningful info that you will find very interesting because you love to read tray icon bubbles. Don't you? Don't you?!?!</SAFE_NOTIFICATION_TEST_MESSAGE>
+
+		<SAFE_DIALOG_ABOUT_TAGLINE>Protect your files.</SAFE_DIALOG_ABOUT_TAGLINE>
+		<SAFE_DIALOG_ABOUT_VERSION>Version</SAFE_DIALOG_ABOUT_VERSION>
+
+		<SAFE_DIALOG_ABOUT_BYLINE> is free software.</SAFE_DIALOG_ABOUT_BYLINE>
+
+		<SAFE_TRAY_ICON_SEND_FEEDBACK>Send Feedback...</SAFE_TRAY_ICON_SEND_FEEDBACK>
+
+		<SAFE_DIALOG_REBOOT_CONFIRMATION_TITLE>Reboot Now?</SAFE_DIALOG_REBOOT_CONFIRMATION_TITLE>
+		<SAFE_DIALOG_REBOOT_CONFIRMATION_MESSAGE_A>Your PC must be rebooted before it is secure enough to use</SAFE_DIALOG_REBOOT_CONFIRMATION_MESSAGE_A>
+		<SAFE_DIALOG_REBOOT_CONFIRMATION_MESSAGE_B>. If you cancel you can reboot on your own later.</SAFE_DIALOG_REBOOT_CONFIRMATION_MESSAGE_B>
+
+		<SAFE_DIALOG_REBOOT_CONFIRMATION_MESSAGE_MAC_A>Your computer must be rebooted before it is secure enough to use</SAFE_DIALOG_REBOOT_CONFIRMATION_MESSAGE_MAC_A>
+		<SAFE_DIALOG_REBOOT_CONFIRMATION_MESSAGE_MAC_B>. You can also quit</SAFE_DIALOG_REBOOT_CONFIRMATION_MESSAGE_MAC_B>
+		<SAFE_DIALOG_REBOOT_CONFIRMATION_MESSAGE_MAC_C>and reboot on your own later. Reboot now?</SAFE_DIALOG_REBOOT_CONFIRMATION_MESSAGE_MAC_C>
+
+
+		<SAFE_DIALOG_SYSTEM_CHANGES_TITLE>System Changes Required</SAFE_DIALOG_SYSTEM_CHANGES_TITLE>
+		<SAFE_DIALOG_SYSTEM_CHANGES_HEADER>Before using Safe, we recommend making the following changes to your system:</SAFE_DIALOG_SYSTEM_CHANGES_HEADER>
+		<SAFE_DIALOG_SYSTEM_CHANGES_FOOTER>These changes are critical for ensuring your privacy when using Safe but may not be necessary for your use case. If in doubt, we strongly recommend making these changes.</SAFE_DIALOG_SYSTEM_CHANGES_FOOTER>
+		<SAFE_DIALOG_SYSTEM_CHANGES_MAKE_CHANGES>Make Changes</SAFE_DIALOG_SYSTEM_CHANGES_MAKE_CHANGES>
+		<SAFE_DIALOG_SYSTEM_CHANGES_DONT_MAKE_CHANGES>Don't Make Changes</SAFE_DIALOG_SYSTEM_CHANGES_DONT_MAKE_CHANGES>
+		<SAFE_DIALOG_SYSTEM_CHANGES_MORE_INFO>More Info</Phrases>
+
+		<SAFE_PROGRESS_SYSTEM_CHANGES_TITLE>Making System Changes</SAFE_PROGRESS_SYSTEM_CHANGES_TITLE>
+		<SAFE_PROGRESS_SYSTEM_CHANGES_MESSAGE>Making System Changes...</SAFE_PROGRESS_SYSTEM_CHANGES_MESSAGE>
+
+		<VISIT_WEBSITE>Visit Website</VISIT_WEBSITE>
+		<GET_SOURCE_CODE>Get Source Code</GET_SOURCE_CODE>
+
+		<LOCATION>Location</LOCATION>
+		<BROWSE>Browse</BROWSE>
+		<NAME>Name</NAME>
+		<CONFIRM>Confirm</CONFIRM>
+		<OK>OK</OK>
+		<CANCEL>Cancel</CANCEL>
+		<SHOW_PASSWORD>Show Password</SHOW_PASSWORD>
+
+		<WE_ARE_UNABLE_TO_MOUNT_MORE_THAN_A_SINGLE_SAFE_WINDOWS_XP_A>We are unable to mount more than a single Safe at a time on Windows XP. Would you like to unmount</WE_ARE_UNABLE_TO_MOUNT_MORE_THAN_A_SINGLE_SAFE_WINDOWS_XP_A>
+		<WE_ARE_UNABLE_TO_MOUNT_MORE_THAN_A_SINGLE_SAFE_WINDOWS_XP_B>first?</WE_ARE_UNABLE_TO_MOUNT_MORE_THAN_A_SINGLE_SAFE_WINDOWS_XP_B>
+		<CANNOT_CREATE_NEW_SAFE>Cannot Create New Safe</CANNOT_CREATE_NEW_SAFE>
+		<CANNOT_MOUNT_EXISTING_SAFE>Cannot Mount Existing Safe</CANNOT_MOUNT_EXISTING_SAFE>
+
+		<INSTALL_WEBDAV_RAMDISK_CACHE>Install WebDAV RAMDisk cache</INSTALL_WEBDAV_RAMDISK_CACHE>
+		<DISABLE_HIBERNATE_SLEEP>Disable hibernate sleep</DISABLE_HIBERNATE_SLEEP>
+		<ENABLE_PAGEFILE_ENCRYPTION>Enable pagefile encryption</ENABLE_PAGEFILE_ENCRYPTION>
+
+		<WINDOWS_XP_WARNING>Windows XP Warning</WINDOWS_XP_WARNING>
+	    <RUN_WINXP_WARNING_DIALOG_A>The security of</RUN_WINXP_WARNING_DIALOG_A>
+	    <RUN_WINXP_WARNING_DIALOG_B>is degraded while running under Windows XP. This is not a strictly a limitation of</RUN_WINXP_WARNING_DIALOG_B>
+	    <RUN_WINXP_WARNING_DIALOG_C>and most security products on Windows XP suffer from the same weakness.\n\nIf you expect that the only people who will ever have access to your internal hard disk are trusted, then this is not an issue. Otherwise we don't recommend running</RUN_WINXP_WARNING_DIALOG_C>
+	    <RUN_WINXP_WARNING_DIALOG_D>in this environment unless you know exactly what you're doing.</RUN_WINXP_WARNING_DIALOG_D>
+
+		<CONTINUE>Continue</CONTINUE>
+		<MORE_INFO>More Info</MORE_INFO>
+		<QUIT>Quit</QUIT>
+
+	</Phrases>
+</Safe> 

@@ -19,6 +19,7 @@
 #include <safe/win/create_safe_dialog.hpp>
 
 #include <safe/constants.h>
+#include <safe/language.hpp>
 #include <safe/create_safe_dialog_logic.hpp>
 #include <safe/win/dialog_common.hpp>
 #include <safe/win/report_bug_dialog.hpp>
@@ -270,14 +271,14 @@ create_new_safe_dialog(HWND owner, std::shared_ptr<encfs::FsIO> fsio) {
 
   const auto dlg =
     DialogTemplate(DialogDesc(DEFAULT_MODAL_DIALOG_STYLE | WS_VISIBLE,
-                              "Create New " ENCRYPTED_STORAGE_NAME_A,
+                              get_phrase("CREATE_NEW") " " ENCRYPTED_STORAGE_NAME_A,
                               0, 0, DIALOG_WIDTH, DIALOG_HEIGHT),
                    {
-                     LText(("Create New " ENCRYPTED_STORAGE_NAME_A),
+                     LText((get_phrase("CREATE_NEW") " " ENCRYPTED_STORAGE_NAME_A),
                            IDC_STATIC,
                            HEADING_LEFT, HEADING_TOP,
                            HEADING_WIDTH, HEADING_HEIGHT),
-                     LText("Location:", IDC_STATIC,
+                     LText(get_phrase("LOCATION") ":", IDC_STATIC,
                            LOCATION_LABEL_LEFT, LOCATION_LABEL_TOP,
                            LOCATION_LABEL_WIDTH, LOCATION_LABEL_HEIGHT),
                      EditText(IDC_LOCATION,
@@ -285,10 +286,10 @@ create_new_safe_dialog(HWND owner, std::shared_ptr<encfs::FsIO> fsio) {
                               LOCATION_ENTRY_WIDTH, LOCATION_ENTRY_HEIGHT,
                               ES_READONLY | ES_LEFT | ES_AUTOHSCROLL |
                               WS_BORDER),
-                     PushButton("Browse", IDC_BROWSE,
+                     PushButton(get_phrase("BROWSE"), IDC_BROWSE,
                                 BROWSE_BTN_LEFT, BROWSE_BTN_TOP,
                                 BROWSE_BTN_WIDTH, BROWSE_BTN_HEIGHT),
-                     LText(ENCRYPTED_STORAGE_NAME_A " Name:", IDC_STATIC,
+                     LText(ENCRYPTED_STORAGE_NAME_A " "get_phrase("NAME")":", IDC_STATIC,
                            NAME_LABEL_LEFT, NAME_LABEL_TOP,
                            NAME_LABEL_WIDTH, NAME_LABEL_HEIGHT),
                      EditText(IDC_NAME,
@@ -296,7 +297,7 @@ create_new_safe_dialog(HWND owner, std::shared_ptr<encfs::FsIO> fsio) {
                               NAME_ENTRY_WIDTH, NAME_ENTRY_HEIGHT,
                               ES_LEFT | WS_BORDER | WS_TABSTOP |
                               ES_AUTOHSCROLL),
-                     LText("Password:", IDC_STATIC,
+                     LText(get_phrase("PASSWORD_UPPERCASE")":", IDC_STATIC,
                            PASS_LABEL_LEFT, PASS_LABEL_TOP,
                            PASS_LABEL_WIDTH, PASS_LABEL_HEIGHT),
                      EditText(IDC_PASSWORD,
@@ -304,7 +305,7 @@ create_new_safe_dialog(HWND owner, std::shared_ptr<encfs::FsIO> fsio) {
                               PASS_ENTRY_WIDTH, PASS_ENTRY_HEIGHT,
                               ES_PASSWORD | ES_LEFT | ES_AUTOHSCROLL |
                               WS_BORDER | WS_TABSTOP),
-                     LText("Confirm:", IDC_STATIC,
+                     LText(get_phrase("CONFIRM")":", IDC_STATIC,
                            CONFIRM_LABEL_LEFT, CONFIRM_LABEL_TOP,
                            CONFIRM_LABEL_WIDTH, CONFIRM_LABEL_HEIGHT),
                      EditText(IDC_CONFIRM_PASSWORD,
@@ -312,10 +313,10 @@ create_new_safe_dialog(HWND owner, std::shared_ptr<encfs::FsIO> fsio) {
                               CONFIRM_ENTRY_WIDTH, CONFIRM_ENTRY_HEIGHT,
                               ES_PASSWORD | ES_LEFT | ES_AUTOHSCROLL |
                               WS_BORDER | WS_TABSTOP),
-                     DefPushButton("OK", IDOK,
+                     DefPushButton(get_phrase("OK"), IDOK,
                                    OK_BTN_LEFT, OK_BTN_TOP,
                                    OK_BTN_WIDTH, OK_BTN_HEIGHT),
-                     PushButton("Cancel", IDCANCEL,
+                     PushButton(get_phrase("CANCEL"), IDCANCEL,
                                 CANCEL_BTN_LEFT, CANCEL_BTN_TOP,
                                 CANCEL_BTN_WIDTH, CANCEL_BTN_HEIGHT),
                    }
